@@ -1,0 +1,37 @@
+<html>
+    <head>
+        <title>Basic Login System</title>
+        <meta name="viewport" content="width:device-width, initial-scale=1.0">
+        <link href="static/bootstrap.min.css" rel="stylesheet" media="screen">
+        <link href="static/main.css" rel="stylesheet" type="text/css" />
+    </head>
+    <body>
+        <div class="top">
+            <div class="row">
+                <div class="col-lg-12 title">
+                    Please enter your username and password to login.
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-4 col-lg-offset-4">
+                    <form action="" method="post">
+                        <input type="text" placeholder="Username" name="username" value="{{ request.form.username }}" class="fullwidth" required><br>
+                        <input type="password" placeholder="Password" name="password" value="{{ request.form.password }}" class="fullwidth" required><br>
+                        <input class="btn btn-default" type="submit" value="Login">
+                    </form>
+                    <br>
+                    {% if error %}
+                        <p class="error"><strong>Error:</strong> {{ error }}</p>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <span class="register">Don't have an account?</span><br>
+                    Click <a href="/register">here</a> to register.
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
+

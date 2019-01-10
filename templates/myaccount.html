@@ -1,0 +1,36 @@
+<html>
+    <head>
+        <title>Basic Login System</title>
+        <meta name="viewport" content="width:device-width, initial-scale=1.0">
+        <link href="static/bootstrap.min.css" rel="stylesheet" media="screen">
+        <link href="static/main.css" rel="stylesheet" type="text/css" />
+    </head>
+    <body>
+        <div class="top">
+            <div class="row title">
+                <div class="col-lg-12">
+                    My Account Information
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-4 col-lg-offset-4">
+                    Username: {{ us }}<br>
+                    First Name: {{ f }}<br>
+                    Last Name: {{ l }}<br>
+                    Email: {{ e }}<br>
+                    Graduation Year: {{ gy }}<br>
+                    Academy: {{ a }}<br>
+                    Job Title: {{ j }}<br>
+                    Company: {{ c }}<br>
+                    <a href="/update">Change Password</a>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <a href="/">Back</a>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
+
