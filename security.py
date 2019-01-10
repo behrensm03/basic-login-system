@@ -19,9 +19,6 @@ def login(input_username, input_password):
     Given username and password, attempts to log in. If credentials are correct, returns True. If login fails, returns False.
     """
     
-    # find_user = users.find_one({'username': input_username.encode('utf8')})
-    # if (find_user == None):
-    #     return False
     if (not (userExists(input_username))):
         return False
     else:
@@ -30,9 +27,7 @@ def login(input_username, input_password):
         password = user_info[ind+13:]
         end = password.find(',')
         p2 = password[:end-1]
-        #print(p2)
         check_hash = bcrypt.hashpw(input_password.encode('utf8'), p2.encode('utf8')).decode('utf8')
-        #print(check_hash)
         if (check_hash == p2):
             return True
         else:
@@ -60,6 +55,11 @@ def register(un, pw, c):
 
 
 def registerV2(a, pw, c):
+    """
+    Checks criteria with validRegister() and returns if invalid.
+    Adds a.username and hashed password to database.
+    """
+    
     if ((not isinstance(a, account.Account)) or (not validRegister(a.username, pw, c))):
         return
     password_hash = bcrypt.hashpw(pw.encode('utf8'), bcrypt.gensalt())
@@ -67,9 +67,13 @@ def registerV2(a, pw, c):
     return
     
 
-# users.delete_many({})
+
 
 def userToDict(a, pw):
+    """
+    Returns dictionary representation of Account a using hashed version of password pw.
+    """
+    
     if (not isinstance(a, account.Account)):
         return
     password_hash = bcrypt.hashpw(pw.encode('utf8'), bcrypt.gensalt())
@@ -95,7 +99,6 @@ def userExists(u):
     
     find = users.find_one({'username': u.encode('utf8')})
     if (find == None):
-        # print("Username does not exist")
         return False
     else:
         return True
@@ -143,8 +146,15 @@ def hasNumber(p):
     """
     
     return any(char.isdigit() for char in p)
-    
+
+
+
+
 def validPassword(p):
+    """
+    Return true if p contains a number and is at least 8 characters long.
+    """
+    
     if ((len(p) >= 8) and hasNumber(p)):
         return True
     else:
@@ -190,6 +200,11 @@ def registerError(un, pw, c):
 
 
 def updatePassword(u, new, c):
+    """
+    If this combination is valid for the change, hashes the new password and updates the password field in db.
+    Returns true if successful, false otherwise.
+    """
+    
     if validChange(u, new, c):
         new_hash = bcrypt.hashpw(new.encode('utf8'), bcrypt.gensalt())
         users.update({'username': u.encode('utf8')}, {'$set':{'password': new_hash}})
@@ -200,21 +215,33 @@ def updatePassword(u, new, c):
 
 
 def validChange(u, pw, c):
+    """
+    Returns true if this combination of username, password, and password confirmation is a valid combination to change the password.
+    Checks for username existing, valid password, passwords matching, and that the new password is different from the old.
+    """
+    
     if (not userExists(u)) or (not passwordsMatch(pw, c)) or (not validPassword(pw)) or (login(u, pw)):
         return False
     else:
         return True
-    
 
 
-# find_user('mb')
-# register('mb', '1234')
-# verifyLogin('mb', '1234')
+def updateProperty(uname, prop, val):
+    """
+    Updates property prop to val for user uname.
+    """
+    if (prop == 'academy' and val == 'NONE'):
+        return
+    elif (not account.equalProperties(uname, prop, val)) and (prop in account.mutableProperties) and (not val == "") and (userExists(uname)):
+        users.update({'username': uname.encode('utf8')}, {'$set':{prop: val}})
+
+
+
+
+
+
+
+
+
+
 # users.delete_many({})
-
-
-
-
-# find_mb = users.find({'username': 'mb1234'.encode('utf8')})
-# for user in find_mb:
-#     print(user)

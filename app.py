@@ -101,19 +101,23 @@ def update():
     confirm = None
     if request.method == 'POST':
         if security.updatePassword(request.form['username'], request.form['password'], request.form['confirmpassword']):
-            flash('Password updated.')
-            sleep(1)
             return redirect(url_for('home'))
         else:
             error="Invalid."
     return render_template('update.html', error=error, confirm=confirm)
 
 
-def renderv2(l, m):
-    confirm=None
-    return render_template(l, confirm=m)
-
-
+@app.route('/edit', methods=['GET', 'POST'])
+@login_required
+def edit():
+   if request.method == 'POST':
+      newAcademy = request.form['academy']
+      if newAcademy == 'none':
+         newAcademy = account.getProperty(account.getUser(session['username']), 'academy')
+      account.updateAccount(session['username'], request.form['firstName'], request.form['lastName'], request.form['email'], request.form['gradYear'],
+                            newAcademy, request.form['jobTitle'], request.form['company'])
+      return redirect(url_for('home'))
+   return render_template('edit.html')
 
 
 @app.route('/logout')
