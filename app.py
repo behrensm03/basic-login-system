@@ -16,7 +16,7 @@ app.secret_key = "secret"
 # create sqlalchemy object
 # db = SQLAlchemy(app)
 
-from models import *
+# from models import *
 
 
 
