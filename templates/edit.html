@@ -9,19 +9,16 @@
         <div class="top">
             <div class="row title">
                 <div class="col-lg-12">
-                    Please enter a username and password to register.
+                    Update the desired fields. Fields that are left blank will not be changed.
                 </div>
             </div>
             <div class="row">
                 <div class="col-lg-4 col-lg-offset-4">
                     <form action="" method="post">
-                        <input type="text" placeholder="Username" name="username" value="{{ request.form.username }}" class="fullwidth" required><br>
-                        <input type="password" placeholder="Password" name="password" value="{{ request.form.password }}" class="fullwidth" required><br>
-                        <input type="password" placeholder="Confirm Password" name="confirmpassword" value="{{ request.form.confirmpassword }}" class="fullwidth" required><br>
-                        <input type="text" placeholder="First Name" name="firstName" value="{{ request.form.firstName }}" class="fullwidth" required><br>
-                        <input type="text" placeholder="Last Name" name="lastName" value="{{ request.form.lastName }}" class="fullwidth" required><br>
-                        <input type="email" placeholder="Email" name="email" value="{{ request.form.email }}" class="fullwidth" required><br>
-                        <input type="number" placeholder="Graduating Year" name="gradYear" value="{{ request.form.gradYear }}" class="fullwidth" min="1996" max="2022" required><br>
+                        <input type="text" placeholder="current-firstname" name="firstName" value="{{ request.form.firstName }}" class="fullwidth"><br>
+                        <input type="text" placeholder="current-lastname" name="lastName" value="{{ request.form.lastName }}" class="fullwidth"><br>
+                        <input type="email" placeholder="current-email" name="email" value="{{ request.form.email }}" class="fullwidth"><br>
+                        <input type="number" placeholder="current-gradyear" name="gradYear" value="{{ request.form.gradYear }}" class="fullwidth" min="1996" max="2022"><br>
                         <select name="academy" placeholder="Academy" class="fullwidth" value="{{ request.form.academy }}">
                             <option value="none">Select Academy</option>
                             <option value="aast">AAST</option>
@@ -34,9 +31,9 @@
                             <option value="avpa-t">AVPA-T</option>
                             <option value="avpa-v">AVPA-V</option>
                         </select><br>
-                        <input type="text" placeholder="Job Title (Optional)" name="jobTitle" value="{{ request.form.jobTitle }}" class="fullwidth"><br>
-                        <input type="text" placeholder="Company Name (Optional)" name="company" value="{{ request.form.company }}" class="fullwidth"><br>
-                        <input class="btn btn-default" type="submit" value="Register">
+                        <input type="text" placeholder="current-jobtitle" name="jobTitle" value="{{ request.form.jobTitle }}" class="fullwidth"><br>
+                        <input type="text" placeholder="current-company" name="company" value="{{ request.form.company }}" class="fullwidth"><br>
+                        <input class="btn btn-default" type="submit" value="Update">
                     </form>
                     <br>
                     {% if error %}
