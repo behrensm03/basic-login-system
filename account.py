@@ -33,24 +33,16 @@ class Account:
         self.jobTitle = job
         self.company = comp
         
+mutableProperties = ['firstName', 'lastName', 'email', 'gradYear', 'academy', 'jobTitle', 'company']
     
-    # def toDictionary(self):
-    #     #password_hash = bcrypt.hashpw(self.password, bcrypt.gensalt())
-    #     d = {
-    #         'username': self.username.encode('utf8'),
-    #         'password': self.password,
-    #         'firstName': self.firstName,
-    #         'lastName': self.lastName,
-    #         'email': self.email,
-    #         'gradYear': self.gradYear,
-    #         'academy': self.academy,
-    #         'jobTitle': self.jobTitle,
-    #         'company': self.company
-    #     }
-    #     return d
+
 
 
 def getUsername(i):
+    """
+    Given user i, return the username
+    """
+    
     u = str(i)
     ind = u.find('username')
     u = u[ind+13:]
@@ -58,7 +50,15 @@ def getUsername(i):
     u = u[:end-1]
     return u
 
+
+
+
 def getProperty(i, p):
+    """
+    Given user i and property p, return the desired property.
+    For example, getProperty(user1, 'firstName') will return the value of property firstName for user1.
+    """
+    
     s = str(i)
     ind = s.find(p)
     s=s[ind+len(p)+4:]
@@ -68,6 +68,39 @@ def getProperty(i, p):
         s = s.upper()
     return s
 
+
+
+def equalProperties(uname, prop, val):
+    """
+    Return true if property prop is already equal to val.
+    Uname, prop, and val are all strings.
+    """
+    
+    old = getProperty(security.getUser(uname), prop)
+    if prop == "academy":
+        old = old.lower()
+    return old == val.lower()
+
+
+
+
+
+
+def updateAccount(uname, fname, lname, em, gy, acad, job, com):
+    security.updateProperty(uname, 'firstName', fname)
+    security.updateProperty(uname, 'lastName', lname)
+    security.updateProperty(uname, 'email', em)
+    security.updateProperty(uname, 'gradYear', gy)
+    security.updateProperty(uname, 'academy', acad)
+    security.updateProperty(uname, 'jobTitle', job)
+    security.updateProperty(uname, 'company', com)
+
+
+
+
+
+
+    
 
 
 
