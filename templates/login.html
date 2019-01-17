@@ -4,6 +4,7 @@
         <meta name="viewport" content="width:device-width, initial-scale=1.0">
         <link href="static/bootstrap.min.css" rel="stylesheet" media="screen">
         <link href="static/main.css" rel="stylesheet" type="text/css" />
+        <link href="https://fonts.googleapis.com/css?family=Slabo+27px" rel="stylesheet">
     </head>
     <body>
         <div class="top">
@@ -17,7 +18,7 @@
                     <form action="" method="post">
                         <input type="text" placeholder="Username" name="username" value="{{ request.form.username }}" class="fullwidth" required><br>
                         <input type="password" placeholder="Password" name="password" value="{{ request.form.password }}" class="fullwidth" required><br>
-                        <input class="btn btn-default" type="submit" value="Login">
+                        <input class="butn" type="submit" value="Login">
                     </form>
                     <br>
                     {% if error %}
@@ -29,6 +30,15 @@
                 <div class="col-lg-12">
                     <span class="register">Don't have an account?</span><br>
                     Click <a href="/register">here</a> to register.
+                </div>
+            </div>
+            <div class="row butn-container">
+                <div class="col-lg-2 col-lg-offset-5">
+                    <a href="/register">
+                        <div class="butn">
+                            <div class="butn-text">Register</div>
+                        </div>
+                    </a>
                 </div>
             </div>
         </div>
