@@ -1,5 +1,6 @@
 body {
     text-align: center;
+    font-family: 'Slabo 27px', serif;
 }
 
 form {
@@ -23,6 +24,8 @@ form input, form select {
 .top {
     min-height: 100%;
     width: 100%;
+    background: linear-gradient(to bottom right, #8A4FE5, #F97DC6);
+    color: black;
 }
 
 .error {
@@ -32,4 +35,49 @@ form input, form select {
 .register {
     font-size: 20px;
     padding-bottom: 25px;
+}
+
+a {
+    color: darkgray;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+.butn {
+    font-size: 14px;
+    height: 45px;
+    background-color: black;
+    width: 100px;
+    text-align: center;
+    border: 2px solid white;
+    color: white;
+    display: inline-block;
+    text-decoration: none;
+    border-radius: 3%;
+    transition: 1s;
+}
+
+.butn:hover {
+    font-size: 14px;
+    height: 45px;
+    background-color: white;
+    width: 100px;
+    text-align: center;
+    border: 2px solid black;
+    color: black;
+    display: inline-block;
+    text-decoration: none;
+    border-radius: 3%;
+    transition: 1s;
+}
+
+.butn-text {
+    line-height: 45px;
+}
+
+.butn-container {
+    padding-top: 50px;
 }
